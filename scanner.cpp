@@ -14,7 +14,7 @@ using namespace std;
 
 
 // WORD DFA
-// Done by: Michael Allard
+// Done by: Tyler Cox, Maria Bailon, Tahwab Noori
 // RE:   (vowel | vowel n | consonant vowel | consonant vowel n | consonant-pair vowel | consonant-pair vowel n)^+
 bool word(string s)
 {
@@ -98,31 +98,10 @@ bool word(string s)
     if (state == 0 || state == 1 || state == 2) return(true);
     else return(false);
 
-    /* replace the following todo the word dfa(vowel | vowel n | consonant vowel | etc......  **
-
-      where vowel = a,e,i,o,e,I, E    refer to Project-partA_w8A10A.doc for RE
-      while (s[charpos] != '\0')
-      {
-        if (state == 0 && s[charpos] == 'a')
-        state = 1;
-        else
-        if (state == 1 && s[charpos] == 'b')
-        state = 2;
-        else
-        if (state == 2 && s[charpos] == 'b')
-        state = 2;
-        else
-        return(false);
-        charpos++;
-      }//end of while
-    // where did I end up????
-    if (state == 2) return(true);  // end in a final state
-     else return(false);
-    */
 }
 
 // PERIOD DFA
-// Done by: Michael Allard
+// Done by: Tyler Cox
 bool period(string s)
 {  // check if the character is a period and return true if it is
     if (s == ".")
@@ -133,7 +112,7 @@ bool period(string s)
 
 // ------ Three  Tables -------------------------------------
 
-// TABLES Done by: Michael Allard
+// TABLES Done by: Maria Bailon
 
 // ** Update the tokentype to be WORD1, WORD2, PERIOD, ERROR, EOFM, etc.
 enum tokentype { ERROR, WORD1, WORD2, PERIOD, EOFM, VERB, VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, SUBJECT, OBJECT, DESTINATION, PRONOUN, CONNECTOR };
@@ -142,9 +121,6 @@ enum tokentype { ERROR, WORD1, WORD2, PERIOD, EOFM, VERB, VERBNEG, VERBPAST, VER
 string tokenName[30] = { "ERROR", "WORD1", "WORD2", "PERIOD", "EOFM", "VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "SUBJECT", "OBJCT", "DESTINATION", "PRONOUN", "CONNECTOR" };
 
 string reservedWords[30] = { "masu", "masen", "mashita", "masendeshita", "desu", "deshita", "o", "wa", "ni", "watashi", "anata", "kare", "kanojo", "sore", "mata", "soshite", "shikashi", "dakara", "eofm" };
-// ** Need the reservedwords table to be set up here.
-// ** Do not require any file input for this. Hard code the table.
-// ** a.out should work without any additional files.
 
 struct reservedWord
 {
@@ -253,6 +229,7 @@ void init()
 
 
 // ------------ Scanner and Driver -----------------------
+// Done by: Tyler Cox, Maria Bailon, Tahwab Noori
 
 ifstream fin;  // global stream for reading from the input file
 
@@ -303,14 +280,6 @@ int scanner(tokentype& tt, string& w)
     }
 
     return 1;
-    //    And generate tt lexical error message if both DFAs failed.
-    //    Let the token_type be ERROR in that case.
-    // 3. Make sure WORDs are checked against the reservedwords list
-    //    If not reserved, token_type is WORD1 or WORD2.
-    // 4. Return the token type & string  (pass by reference)
-
-
-
 }//the end of scanner
 
 
